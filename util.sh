@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ "$OS_NAME" == "windows" ]]; then
+  alias sudo=""
+fi
+
 set -o errexit
 set -o nounset
 set -o pipefail

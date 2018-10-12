@@ -12,8 +12,12 @@ if hash minikube 2>/dev/null; then
   echo "Skipping minikube install"
 else
   echo "Installing minikube"
-  curl -Lo minikube https://storage.googleapis.com/minikube/releases/$VERSION/minikube-linux-amd64 && \
-    chmod +x minikube && sudo mv minikube /usr/local/bin/
+  if [[ "$OS_NAME" == "linux"]]; then
+    url="https://storage.googleapis.com/minikube/releases/$VERSION/minikube-linux-amd64"
+  else
+    url="https://storage.googleapis.com/minikube/releases/$VERSION/minikube-windows-amd64.exe"
+  fi
+  curl -Lo minikube $url && chmod +x minikube && sudo mv minikube /usr/local/bin/
 fi
 
 # Make root mounted as rshared to fix kube-dns issues.
