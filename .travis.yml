@@ -6,5 +6,5 @@ os:
  - windows
 install: true
 script:
-- choco install kubernetes-cli
+- choco install -y kubernetes-cli
 - make -v
